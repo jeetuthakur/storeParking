@@ -1,0 +1,83 @@
+<!doctype html>
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="scotchTodo">
+
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Optimize mobile viewport -->
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <!-- load bootstrap -->
+    <style>
+        html {
+            overflow-y: scroll;
+        }
+        body {
+            padding-top: 50px;
+        }
+        #todo-list {
+            margin-bottom: 30px;
+        }
+        #todo-form {
+            margin-bottom: 50px;
+        }
+    </style>
+    <!-- SPELLS -->
+    <script src="angular.min.js"></script>
+    <!-- load angular -->
+    <script src="core.js"></script>
+</head>
+<!-- SET THE CONTROLLER AND GET ALL TODOS WITH INITIALIZE FUNCTION -->
+
+<body ng-controller="mainController">
+    <div class="container">
+        <div id="todo-list" class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                <div class="checkbox" ng-repeat="location in locations">
+                    <label>
+                        <input type="checkbox"> {{ location.position.coordinates[0] + " , " + location.position.coordinates[1] + " , " +location.desc + " , " + location.isActive }}
+                        <button class="btn btn-primary btn-small" ng-click="activateLocation(location._id)">activate</button>
+                        <button class="btn btn-primary btn-small" ng-click="deleteLocation(location._id)">delete</button>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <!-- FORM TO CREATE TODOS -->
+        <div id="todo-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="form-group">
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                        Latitude
+                        <input type="text" class="form-control input-lg text-center" placeholder="enter lat" ng-model="lat" /> 
+                        Latitude
+                        <input type="text" class="form-control input-lg text-center" placeholder="enter lng" ng-model="lng" /> 
+                        Description
+                        <input type="text" class="form-control input-lg text-center" placeholder="enter desc" ng-model="desc" />
+                    </div>
+                    <!-- createToDo() WILL CREATE NEW TODOS -->
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createLocation()">add</button>
+                </form>
+            </div>
+        </div>
+        <div id="search-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="form-group">
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                        radius
+                        <input type="text" class="form-control input-lg text-center" placeholder="enter radius" ng-model="radius" />
+                    </div>
+                    <!-- createToDo() WILL CREATE NEW TODOS -->
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="getLocation()">search</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+Status API Training Shop Blog About
